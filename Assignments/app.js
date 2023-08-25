@@ -1,14 +1,35 @@
 let users = [];
+
+function notifyUserExist() {
+  let alert = document.getElementById("alert-danger");
+  alert.classList.remove("alert");
+  alert.classList.add("alert-danger");
+  setTimeout(() => {
+    alert.classList.remove("alert-danger");
+    alert.classList.add("alert");
+  }, 2000);
+}
+function notifyUserAdded() {
+  let alert = document.getElementById("alert-success");
+  alert.classList.remove("alert");
+  alert.classList.add("alert-success");
+  setTimeout(() => {
+    alert.classList.remove("alert-success");
+    alert.classList.add("alert");
+  }, 2000);
+}
+
 function ifUserExist(userInput) {
   let checkUser = users.filter((user) => {
     return user.email == userInput.email;
-  })
+  });
 
   if (checkUser.length == 0) {
     users.push(userInput);
-  } 
-  else {
-    alert('user already exist');
+    notifyUserAdded();
+  } else {
+    notifyUserExist();
+    // alert('user already exist');
     // console.log("Hello");
   }
 }
